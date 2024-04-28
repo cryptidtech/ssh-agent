@@ -2684,6 +2684,7 @@ module.exports = (process.env['OS'] != 'Windows_NT') ? {
     homePath: os.userInfo().homedir,
     sshAgentCmdDefault: 'ssh-agent',
     sshAddCmdDefault: 'ssh-add',
+    sshCmd: 'ssh',
     gitCmdDefault: 'git'
 } : {
     // Assuming GitHub hosted `windows-*` runners for now
@@ -2837,7 +2838,7 @@ const core = __nccwpck_require__(186);
 const child_process = __nccwpck_require__(81);
 const fs = __nccwpck_require__(147);
 const crypto = __nccwpck_require__(113);
-const { homePath, sshAgentCmdDefault, sshAddCmdDefault, gitCmdDefault } = __nccwpck_require__(789);
+const { homePath, sshAgentCmdDefault, sshAddCmdDefault, sshCmdDefault, gitCmdDefault } = __nccwpck_require__(789);
 
 try {
     const privateKey = core.getInput('ssh-private-key');
@@ -2845,10 +2846,12 @@ try {
 
     const sshAgentCmdInput = core.getInput('ssh-agent-cmd');
     const sshAddCmdInput = core.getInput('ssh-add-cmd');
+    const sshCmdInput = core.getInput('ssh-cmd');
     const gitCmdInput = core.getInput('git-cmd');
 
     const sshAgentCmd = sshAgentCmdInput ? sshAgentCmdInput : sshAgentCmdDefault;
     const sshAddCmd = sshAddCmdInput ? sshAddCmdInput : sshAddCmdDefault;
+    const sshCmd = sshCmdInput ? sshCmdInput : sshCmdDefault;
     const gitCmd = gitCmdInput ? gitCmdInput : gitCmdDefault;
 
     if (!privateKey) {
@@ -2930,6 +2933,9 @@ try {
 
         console.log(`Added deploy-key mapping: Use identity '${homeSsh}/key-${sha256}' for GitHub repository ${ownerAndRepo}`);
     });
+
+    const ssh_github_output = child_process.execSync(`${sshCmd} git@github.com`);
+    console.log(`ssh to github:\n${ssh_github_output}`);
 
 } catch (error) {
 

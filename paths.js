@@ -6,6 +6,7 @@ module.exports = (process.env['OS'] != 'Windows_NT') ? {
     homePath: os.userInfo().homedir,
     sshAgentCmdDefault: 'ssh-agent',
     sshAddCmdDefault: 'ssh-add',
+    sshCmd: 'ssh',
     gitCmdDefault: 'git'
 } : {
     // Assuming GitHub hosted `windows-*` runners for now

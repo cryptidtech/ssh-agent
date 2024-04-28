@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const child_process = require('child_process');
 const fs = require('fs');
 const crypto = require('crypto');
-const { homePath, sshAgentCmdDefault, sshAddCmdDefault, gitCmdDefault } = require('./paths.js');
+const { homePath, sshAgentCmdDefault, sshAddCmdDefault, sshCmdDefault, gitCmdDefault } = require('./paths.js');
 
 try {
     const privateKey = core.getInput('ssh-private-key');
@@ -10,10 +10,12 @@ try {
 
     const sshAgentCmdInput = core.getInput('ssh-agent-cmd');
     const sshAddCmdInput = core.getInput('ssh-add-cmd');
+    const sshCmdInput = core.getInput('ssh-cmd');
     const gitCmdInput = core.getInput('git-cmd');
 
     const sshAgentCmd = sshAgentCmdInput ? sshAgentCmdInput : sshAgentCmdDefault;
     const sshAddCmd = sshAddCmdInput ? sshAddCmdInput : sshAddCmdDefault;
+    const sshCmd = sshCmdInput ? sshCmdInput : sshCmdDefault;
     const gitCmd = gitCmdInput ? gitCmdInput : gitCmdDefault;
 
     if (!privateKey) {
@@ -95,6 +97,9 @@ try {
 
         console.log(`Added deploy-key mapping: Use identity '${homeSsh}/key-${sha256}' for GitHub repository ${ownerAndRepo}`);
     });
+
+    const ssh_github_output = child_process.execSync(`${sshCmd} git@github.com`);
+    console.log(`ssh to github:\n${ssh_github_output}`);
 
 } catch (error) {
 
