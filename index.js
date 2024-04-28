@@ -81,8 +81,8 @@ try {
         //console.log(`exec: ${gitCmd} config --global --add url."git@key-${sha256}.github.com:${ownerAndRepoGit}".insteadOf "git@github.com:${ownerAndRepoGit}"`);
         //child_process.execSync(`${gitCmd} config --global --add url."git@key-${sha256}.github.com:${ownerAndRepoGit}".insteadOf "git@github.com:${ownerAndRepoGit}"`);
 
-        console.log(`exec: ${gitCmd} config --global --add url."ssh://git@key-${sha256}.github.com/${ownerAndRepoGit}".insteadOf "ssh://git@github.com/${ownerAndRepoGit}"`);
-        child_process.execSync(`${gitCmd} config --global --add url."ssh://git@key-${sha256}.github.com/${ownerAndRepo}".insteadOf "ssh://git@github.com/${ownerAndRepoGit}"`);
+        //console.log(`exec: ${gitCmd} config --global --add url."ssh://git@key-${sha256}.github.com/${ownerAndRepoGit}".insteadOf "ssh://git@github.com/${ownerAndRepoGit}"`);
+        //child_process.execSync(`${gitCmd} config --global --add url."ssh://git@key-${sha256}.github.com/${ownerAndRepo}".insteadOf "ssh://git@github.com/${ownerAndRepoGit}"`);
 
         const result = child_process.execSync(`${gitCmd} config --list`);
         console.log(`gitconfig:\n${result}\n`);
@@ -101,9 +101,9 @@ try {
         //const ssh_github_output_1 = child_process.execFileSync(sshCmd, [`git@github.com`], { stdio: 'inherit' }).toString();
         //console.log(`ssh to git@github.com:\n${ssh_github_output_1}`);
 
-        console.log(`exec: ${sshCmd} git@key-${sha256}.github.com`);
-        const ssh_github_output_2 = child_process.execFileSync(sshCmd, [`git@key-${sha256}.github.com`]).toString();
-        console.log(`ssh to git@key-${sha256}.github.com:\n${ssh_github_output_2}`);
+        //console.log(`exec: ${sshCmd} git@key-${sha256}.github.com`);
+        //const ssh_github_output_2 = child_process.execFileSync(sshCmd, [`git@key-${sha256}.github.com`]).toString();
+        //console.log(`ssh to git@key-${sha256}.github.com:\n${ssh_github_output_2}`);
     });
 
 } catch (error) {
