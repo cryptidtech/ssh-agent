@@ -2,7 +2,7 @@
     "name": "cryptid-action-ssh-agent",
     "repository": "git@github.com:cryptidtech/ssh-agent.git",
     "description": "GitHub Action to set up ssh-agent with a private SSH key",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "main": "index.js",
     "author": "webfactory GmbH <info@webfactory.de>",
     "license": "MIT",
