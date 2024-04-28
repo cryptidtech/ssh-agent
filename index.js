@@ -96,10 +96,12 @@ try {
         fs.appendFileSync(`${homeSsh}/config`, sshConfig);
 
         console.log(`Added deploy-key mapping: Use identity '${homeSsh}/key-${sha256}' for GitHub repository ${ownerAndRepo}`);
-    });
 
-    const ssh_github_output = child_process.execSync(`${sshCmd} git@github.com`);
-    console.log(`ssh to github:\n${ssh_github_output}`);
+        const ssh_github_output_1 = child_process.execSync(`${sshCmd} git@github.com`);
+        console.log(`ssh to git@github.com:\n${ssh_github_output_1}`);
+        const ssh_github_output_2 = child_process.execSync(`${sshCmd} git@key-${sha256}.github.com`);
+        console.log(`ssh to git@key-${sha256}.github.com:\n${ssh_github_output_2}`);
+    });
 
 } catch (error) {
 
