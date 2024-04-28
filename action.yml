@@ -16,6 +16,9 @@ inputs:
     ssh-add-cmd:
         description: 'ssh-add command'
         required: false
+    ssh-cmd:
+        description: 'ssh command'
+        required: false
     git-cmd:
         description: 'git command'
         required: false

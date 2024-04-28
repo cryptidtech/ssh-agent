@@ -2684,13 +2684,14 @@ module.exports = (process.env['OS'] != 'Windows_NT') ? {
     homePath: os.userInfo().homedir,
     sshAgentCmdDefault: 'ssh-agent',
     sshAddCmdDefault: 'ssh-add',
-    sshCmd: 'ssh',
+    sshCmdDefault: 'ssh',
     gitCmdDefault: 'git'
 } : {
     // Assuming GitHub hosted `windows-*` runners for now
     homePath: os.homedir(),
     sshAgentCmdDefault: 'c://progra~1//git//usr//bin//ssh-agent.exe',
     sshAddCmdDefault: 'c://progra~1//git//usr//bin//ssh-add.exe',
+    sshCmd: 'c://progra~1//git//usr//bin//ssh.exe',
     gitCmdDefault: 'c://progra~1//git//bin//git.exe'
 };
 
