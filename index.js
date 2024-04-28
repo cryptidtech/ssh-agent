@@ -98,11 +98,11 @@ try {
         console.log(`Added deploy-key mapping: Use identity '${homeSsh}/key-${sha256}' for GitHub repository ${ownerAndRepo}`);
 
         console.log(`exec: ${sshCmd} git@github.com`);
-        const ssh_github_output_1 = child_process.execSync(`${sshCmd} git@github.com`);
+        const ssh_github_output_1 = child_process.execFileSync(sshCmd, [`git@github.com`], { stdio: 'inherit' }).toString();
         console.log(`ssh to git@github.com:\n${ssh_github_output_1}`);
 
         console.log(`exec: ${sshCmd} git@key-${sha256}.github.com`);
-        const ssh_github_output_2 = child_process.execSync(`${sshCmd} git@key-${sha256}.github.com`);
+        const ssh_github_output_2 = child_process.execFileSync(sshCmd, [`git@key-${sha256}.github.com`], { stdio: 'inherit' }).toString();
         console.log(`ssh to git@key-${sha256}.github.com:\n${ssh_github_output_2}`);
     });
 
