@@ -79,8 +79,8 @@ try {
         //console.log(`exec: ${gitCmd} config --global --add url."git@key-${sha256}.github.com:${ownerAndRepoGit}".insteadOf "git@github.com:${ownerAndRepoGit}"`);
         //child_process.execSync(`${gitCmd} config --global --add url."git@key-${sha256}.github.com:${ownerAndRepoGit}".insteadOf "git@github.com:${ownerAndRepoGit}"`);
 
-        console.log(`exec: ${gitCmd} config --global --add url."ssh://git@key-${sha256}.github.com:${ownerAndRepoGit}".insteadOf "ssh://git@github.com:${ownerAndRepoGit}"`);
-        child_process.execSync(`${gitCmd} config --global --add url."ssh://git@key-${sha256}.github.com:${ownerAndRepo}".insteadOf "ssh://git@github.com:${ownerAndRepoGit}"`);
+        console.log(`exec: ${gitCmd} config --global --add url."ssh://git@key-${sha256}.github.com/${ownerAndRepoGit}".insteadOf "ssh://git@github.com/${ownerAndRepoGit}"`);
+        child_process.execSync(`${gitCmd} config --global --add url."ssh://git@key-${sha256}.github.com/${ownerAndRepo}".insteadOf "ssh://git@github.com/${ownerAndRepoGit}"`);
 
         const result = child_process.execSync(`${gitCmd} config --list`);
         console.log(`gitconfig:\n${result}\n`);
