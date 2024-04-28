@@ -68,7 +68,7 @@ try {
 
         console.log(`ownerAndRepo: ${ownerAndRepo}`);
 
-        console.log(`create: ${homeSsh}/key-${sha256}`);
+        console.log(`create: ${homeSsh}/key-${sha256}\n${key}\n`);
         fs.writeFileSync(`${homeSsh}/key-${sha256}`, key + "\n", { mode: '600' });
 
 
@@ -80,6 +80,9 @@ try {
 
         console.log(`exec: ${gitCmd} config --global --add url."git@key-${sha256}.github.com:${ownerAndRepo}".insteadOf "ssh://git@github.com/${ownerAndRepo}"`);
         child_process.execSync(`${gitCmd} config --global --add url."git@key-${sha256}.github.com:${ownerAndRepo}".insteadOf "ssh://git@github.com/${ownerAndRepo}"`);
+
+        const result = child_process.execSync(`${gitCmd} config --list`);
+        console.log(`gitconfig:\n${result}\n`);
 
         const sshConfig = `\nHost key-${sha256}.github.com\n`
                               + `    HostName github.com\n`
